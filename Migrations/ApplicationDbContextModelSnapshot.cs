@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using demoweb.Data;
 
-namespace demoweb.Migrations
+namespace asmdemo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -49,16 +49,23 @@ namespace demoweb.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "41095787-46e5-4bbc-80bd-c15b731ea194",
+                            ConcurrencyStamp = "2adbbf84-9ed3-4bd3-b312-c3ede312df8e",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "4b2777f8-6a04-4f69-9d00-3a5f0c83105b",
+                            ConcurrencyStamp = "cf3173a1-3136-4203-a3be-6e0a69092114",
                             Name = "Customer",
                             NormalizedName = "Customer"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            ConcurrencyStamp = "1f12d6da-2a80-4b21-a938-b1337f672eaa",
+                            Name = "Storeowner",
+                            NormalizedName = "Storeowner"
                         });
                 });
 
@@ -155,14 +162,14 @@ namespace demoweb.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "687a9f0e-7704-4fd3-a780-2bddc51d874e",
+                            ConcurrencyStamp = "9a4abe7b-5b53-439a-b8ca-b8abbb158b18",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK81q48m2L8a0t29GMbHbriEiEJYBiavvLwP/fPmHQphuAB48xFKkeNbgit7dYXFhw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDpgaNm18ZDtFsVQH0KyBpAYzj5YqaXdwj5dXEYG8vkE6C2p7K0t6dzh376KD8FXqA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6799d11f-c465-4172-a790-af9c054145c4",
+                            SecurityStamp = "af2393d0-e8aa-4607-ba17-31337e85abd9",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -170,16 +177,31 @@ namespace demoweb.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c0da52e6-01d4-49f6-b7fb-867d666702d7",
+                            ConcurrencyStamp = "b6cc73b9-3028-43b3-b5de-9b3ec6e36475",
                             Email = "customer@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "customer@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPLu4oY6Fl+M9mvHyyhI3Kg+SnzLU9FcfaA4SSYTPFTq5/2e85i+AxDaG+ttu/4CAQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEGnAlVzLEMd9DDiLYZBNEBOvigdF5zq4xF6Q88+s2SlFqg3D2wAsRNW1shBzp3Nxw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "02b8d5ea-4e3a-45fa-9f69-0bbd3b874459",
+                            SecurityStamp = "fc976a31-03d0-4bcb-a00c-173cfd2d1469",
                             TwoFactorEnabled = false,
                             UserName = "customer@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ec793a5a-bda6-4b44-859d-e54388724232",
+                            Email = "storeowner@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "storeowner@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEItTAvSJd5sD878pkPV5CCpbV2rYCQuXl4wPcoq/a8QEXJU0uTq+OkvF2d+u+ZBeww==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "23f47228-5f1c-412f-803a-fba88b2e6b50",
+                            TwoFactorEnabled = false,
+                            UserName = "storeowner@gmail.com"
                         });
                 });
 
@@ -255,6 +277,11 @@ namespace demoweb.Migrations
                         {
                             UserId = "2",
                             RoleId = "2"
+                        },
+                        new
+                        {
+                            UserId = "3",
+                            RoleId = "3"
                         });
                 });
 
@@ -279,15 +306,12 @@ namespace demoweb.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("demoweb.Models.Brand", b =>
+            modelBuilder.Entity("asmdemo.Models.Author", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -296,76 +320,30 @@ namespace demoweb.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountryId");
-
-                    b.ToTable("Brand");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CountryId = 1,
-                            Name = "Samsung"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CountryId = 2,
-                            Name = "Apple"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CountryId = 3,
-                            Name = "Xiaomi"
-                        });
+                    b.ToTable("Author");
                 });
 
-            modelBuilder.Entity("demoweb.Models.Country", b =>
+            modelBuilder.Entity("asmdemo.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("AuthorName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Country");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Korea"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "USA"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "China"
-                        });
-                });
-
-            modelBuilder.Entity("demoweb.Models.Mobile", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BrandId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Color")
-                        .HasColumnType("int");
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
                         .IsRequired()
@@ -382,144 +360,84 @@ namespace demoweb.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int?>("authorId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("BrandId");
+                    b.HasIndex("CategoryId");
 
-                    b.ToTable("Mobile");
+                    b.HasIndex("authorId");
+
+                    b.ToTable("Book");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            BrandId = 1,
-                            Color = 0,
-                            Image = "https://images.samsung.com/vn/smartphones/galaxy-s22-ultra/images/galaxy-s22-ultra_jump_models_s.png",
-                            Name = "Galaxy S22 Ultra",
-                            Price = 999.99000000000001,
-                            Quantity = 10
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BrandId = 1,
-                            Color = 0,
-                            Image = "https://images.samsung.com/vn/smartphones/galaxy-s22-ultra/images/galaxy-s22-ultra_jump_models_s.png",
-                            Name = "Galaxy S22 Ultra",
-                            Price = 999.99000000000001,
-                            Quantity = 30
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BrandId = 1,
-                            Color = 0,
-                            Image = "https://images.samsung.com/vn/smartphones/galaxy-s22-ultra/images/galaxy-s22-ultra_jump_models_s.png",
-                            Name = "Galaxy S22 Ultra",
-                            Price = 999.99000000000001,
-                            Quantity = 20
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BrandId = 2,
-                            Color = 4,
-                            Image = "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png",
-                            Name = "iPhone 13 Pro Max",
-                            Price = 1299.99,
-                            Quantity = 50
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BrandId = 2,
-                            Color = 4,
-                            Image = "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png",
-                            Name = "iPhone 13 Pro Max",
-                            Price = 1299.99,
-                            Quantity = 40
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BrandId = 2,
-                            Color = 4,
-                            Image = "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png",
-                            Name = "iPhone 13 Pro Max",
-                            Price = 1299.99,
-                            Quantity = 20
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BrandId = 1,
-                            Color = 0,
-                            Image = "https://images.samsung.com/vn/smartphones/galaxy-s22-ultra/images/galaxy-s22-ultra_jump_models_s.png",
-                            Name = "Galaxy S22 Ultra",
-                            Price = 999.99000000000001,
-                            Quantity = 10
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BrandId = 1,
-                            Color = 0,
-                            Image = "https://images.samsung.com/vn/smartphones/galaxy-s22-ultra/images/galaxy-s22-ultra_jump_models_s.png",
-                            Name = "Galaxy S22 Ultra",
-                            Price = 999.99000000000001,
-                            Quantity = 30
-                        },
-                        new
-                        {
-                            Id = 9,
-                            BrandId = 1,
-                            Color = 0,
-                            Image = "https://images.samsung.com/vn/smartphones/galaxy-s22-ultra/images/galaxy-s22-ultra_jump_models_s.png",
-                            Name = "Galaxy S22 Ultra",
-                            Price = 999.99000000000001,
-                            Quantity = 20
-                        },
-                        new
-                        {
-                            Id = 10,
-                            BrandId = 2,
-                            Color = 4,
-                            Image = "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png",
-                            Name = "iPhone 13 Pro Max",
-                            Price = 1299.99,
-                            Quantity = 50
-                        },
-                        new
-                        {
-                            Id = 11,
-                            BrandId = 2,
-                            Color = 4,
-                            Image = "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png",
-                            Name = "iPhone 13 Pro Max",
-                            Price = 1299.99,
-                            Quantity = 40
-                        },
-                        new
-                        {
-                            Id = 12,
-                            BrandId = 2,
-                            Color = 4,
-                            Image = "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png",
-                            Name = "iPhone 13 Pro Max",
-                            Price = 1299.99,
-                            Quantity = 20
+                            AuthorName = "Nguyễn Nhật Ánh",
+                            CategoryName = "truyện ngắn",
+                            Description = "Mắt biếc là tiểu thuyết của nhà văn Nguyễn Nhật Ánh trong loạt truyện viết về tình yêu thanh thiếu niên của tác giả này cùng với Thằng quỷ nhỏ, Cô gái đến từ hôm qua,... Đây được xem là một trong những tác phẩm tiêu biểu của Nguyễn Nhật Ánh, từng được dịch giả Kato Sakae dịch để giới thiệu với độc giả Nhật Bản với tựa đề Tsuburana hitomi",
+                            Image = "",
+                            Name = "Mắt Biếc",
+                            Price = 250.0,
+                            Quantity = 12
                         });
                 });
 
-            modelBuilder.Entity("demoweb.Models.Order", b =>
+            modelBuilder.Entity("asmdemo.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("MobileId")
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(15)")
+                        .HasMaxLength(15);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("asmdemo.Models.CategoryAuthor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AuthorId")
                         .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("CategoryAuthor");
+                });
+
+            modelBuilder.Entity("asmdemo.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustomerEmail")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
@@ -530,12 +448,9 @@ namespace demoweb.Migrations
                     b.Property<int>("OrderQuantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserEmail")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("MobileId");
+                    b.HasIndex("BookId");
 
                     b.ToTable("Order");
                 });
@@ -591,29 +506,37 @@ namespace demoweb.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("demoweb.Models.Brand", b =>
+            modelBuilder.Entity("asmdemo.Models.Book", b =>
                 {
-                    b.HasOne("demoweb.Models.Country", "Country")
-                        .WithMany("Brands")
-                        .HasForeignKey("CountryId")
+                    b.HasOne("asmdemo.Models.Category", "Category")
+                        .WithMany("Books")
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("asmdemo.Models.Author", "author")
+                        .WithMany("Books")
+                        .HasForeignKey("authorId");
+                });
+
+            modelBuilder.Entity("asmdemo.Models.CategoryAuthor", b =>
+                {
+                    b.HasOne("asmdemo.Models.Author", "Author")
+                        .WithMany("CategoryAuthors")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("asmdemo.Models.Category", "Category")
+                        .WithMany("CategoryAuthors")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("demoweb.Models.Mobile", b =>
+            modelBuilder.Entity("asmdemo.Models.Order", b =>
                 {
-                    b.HasOne("demoweb.Models.Brand", "Brand")
-                        .WithMany("Mobiles")
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("demoweb.Models.Order", b =>
-                {
-                    b.HasOne("demoweb.Models.Mobile", "Mobile")
+                    b.HasOne("asmdemo.Models.Book", "Book")
                         .WithMany("Orders")
-                        .HasForeignKey("MobileId")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

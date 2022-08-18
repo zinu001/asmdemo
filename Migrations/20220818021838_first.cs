@@ -1,8 +1,7 @@
-﻿
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace demoweb.Migrations
+namespace asmdemo.Migrations
 {
     public partial class first : Migration
     {
@@ -48,16 +47,30 @@ namespace demoweb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Country",
+                name: "Author",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: false)
+                    Name = table.Column<string>(maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Country", x => x.Id);
+                    table.PrimaryKey("PK_Author", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Category",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(maxLength: 15, nullable: true),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Category", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -167,27 +180,7 @@ namespace demoweb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Brand",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 20, nullable: false),
-                    CountryId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Brand", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Brand_Country_CountryId",
-                        column: x => x.CountryId,
-                        principalTable: "Country",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Mobile",
+                name: "Book",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -195,17 +188,52 @@ namespace demoweb.Migrations
                     Name = table.Column<string>(maxLength: 30, nullable: false),
                     Quantity = table.Column<int>(nullable: false),
                     Price = table.Column<double>(nullable: false),
-                    Color = table.Column<int>(nullable: false),
                     Image = table.Column<string>(nullable: false),
-                    BrandId = table.Column<int>(nullable: false)
+                    Description = table.Column<string>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: true),
+                    CategoryName = table.Column<string>(nullable: false),
+                    authorId = table.Column<int>(nullable: true),
+                    AuthorName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Mobile", x => x.Id);
+                    table.PrimaryKey("PK_Book", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Mobile_Brand_BrandId",
-                        column: x => x.BrandId,
-                        principalTable: "Brand",
+                        name: "FK_Book_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Book_Author_authorId",
+                        column: x => x.authorId,
+                        principalTable: "Author",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CategoryAuthor",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryId = table.Column<int>(nullable: false),
+                    AuthorId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CategoryAuthor", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CategoryAuthor_Author_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "Author",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CategoryAuthor_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -216,8 +244,8 @@ namespace demoweb.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MobileId = table.Column<int>(nullable: false),
-                    UserEmail = table.Column<string>(nullable: true),
+                    BookId = table.Column<int>(nullable: false),
+                    CustomerEmail = table.Column<string>(nullable: true),
                     OrderQuantity = table.Column<int>(nullable: false),
                     OrderPrice = table.Column<double>(nullable: false),
                     OrderDate = table.Column<DateTime>(nullable: false)
@@ -226,9 +254,9 @@ namespace demoweb.Migrations
                 {
                     table.PrimaryKey("PK_Order", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Order_Mobile_MobileId",
-                        column: x => x.MobileId,
-                        principalTable: "Mobile",
+                        name: "FK_Order_Book_BookId",
+                        column: x => x.BookId,
+                        principalTable: "Book",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -238,8 +266,9 @@ namespace demoweb.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1", "41095787-46e5-4bbc-80bd-c15b731ea194", "Admin", "Admin" },
-                    { "2", "4b2777f8-6a04-4f69-9d00-3a5f0c83105b", "Customer", "Customer" }
+                    { "1", "2adbbf84-9ed3-4bd3-b312-c3ede312df8e", "Admin", "Admin" },
+                    { "2", "cf3173a1-3136-4203-a3be-6e0a69092114", "Customer", "Customer" },
+                    { "3", "1f12d6da-2a80-4b21-a938-b1337f672eaa", "Storeowner", "Storeowner" }
                 });
 
             migrationBuilder.InsertData(
@@ -247,57 +276,30 @@ namespace demoweb.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "687a9f0e-7704-4fd3-a780-2bddc51d874e", "admin@gmail.com", false, false, null, null, "admin@gmail.com", "AQAAAAEAACcQAAAAEK81q48m2L8a0t29GMbHbriEiEJYBiavvLwP/fPmHQphuAB48xFKkeNbgit7dYXFhw==", null, false, "6799d11f-c465-4172-a790-af9c054145c4", false, "admin@gmail.com" },
-                    { "2", 0, "c0da52e6-01d4-49f6-b7fb-867d666702d7", "customer@gmail.com", false, false, null, null, "customer@gmail.com", "AQAAAAEAACcQAAAAEPLu4oY6Fl+M9mvHyyhI3Kg+SnzLU9FcfaA4SSYTPFTq5/2e85i+AxDaG+ttu/4CAQ==", null, false, "02b8d5ea-4e3a-45fa-9f69-0bbd3b874459", false, "customer@gmail.com" }
+                    { "1", 0, "9a4abe7b-5b53-439a-b8ca-b8abbb158b18", "admin@gmail.com", false, false, null, null, "admin@gmail.com", "AQAAAAEAACcQAAAAEDpgaNm18ZDtFsVQH0KyBpAYzj5YqaXdwj5dXEYG8vkE6C2p7K0t6dzh376KD8FXqA==", null, false, "af2393d0-e8aa-4607-ba17-31337e85abd9", false, "admin@gmail.com" },
+                    { "2", 0, "b6cc73b9-3028-43b3-b5de-9b3ec6e36475", "customer@gmail.com", false, false, null, null, "customer@gmail.com", "AQAAAAEAACcQAAAAEEGnAlVzLEMd9DDiLYZBNEBOvigdF5zq4xF6Q88+s2SlFqg3D2wAsRNW1shBzp3Nxw==", null, false, "fc976a31-03d0-4bcb-a00c-173cfd2d1469", false, "customer@gmail.com" },
+                    { "3", 0, "ec793a5a-bda6-4b44-859d-e54388724232", "storeowner@gmail.com", false, false, null, null, "storeowner@gmail.com", "AQAAAAEAACcQAAAAEItTAvSJd5sD878pkPV5CCpbV2rYCQuXl4wPcoq/a8QEXJU0uTq+OkvF2d+u+ZBeww==", null, false, "23f47228-5f1c-412f-803a-fba88b2e6b50", false, "storeowner@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
-                table: "Country",
-                columns: new[] { "Id", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Korea" },
-                    { 2, "USA" },
-                    { 3, "China" }
-                });
+                table: "Book",
+                columns: new[] { "Id", "AuthorName", "CategoryId", "CategoryName", "Description", "Image", "Name", "Price", "Quantity", "authorId" },
+                values: new object[] { 1, "Nguyễn Nhật Ánh", null, "truyện ngắn", "Mắt biếc là tiểu thuyết của nhà văn Nguyễn Nhật Ánh trong loạt truyện viết về tình yêu thanh thiếu niên của tác giả này cùng với Thằng quỷ nhỏ, Cô gái đến từ hôm qua,... Đây được xem là một trong những tác phẩm tiêu biểu của Nguyễn Nhật Ánh, từng được dịch giả Kato Sakae dịch để giới thiệu với độc giả Nhật Bản với tựa đề Tsuburana hitomi", "", "Mắt Biếc", 250.0, 12, null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "UserId", "RoleId" },
-                values: new object[,]
-                {
-                    { "1", "1" },
-                    { "2", "2" }
-                });
+                values: new object[] { "1", "1" });
 
             migrationBuilder.InsertData(
-                table: "Brand",
-                columns: new[] { "Id", "CountryId", "Name" },
-                values: new object[,]
-                {
-                    { 1, 1, "Samsung" },
-                    { 2, 2, "Apple" },
-                    { 3, 3, "Xiaomi" }
-                });
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[] { "2", "2" });
 
             migrationBuilder.InsertData(
-                table: "Mobile",
-                columns: new[] { "Id", "BrandId", "Color", "Image", "Name", "Price", "Quantity" },
-                values: new object[,]
-                {
-                    { 1, 1, 0, "https://images.samsung.com/vn/smartphones/galaxy-s22-ultra/images/galaxy-s22-ultra_jump_models_s.png", "Galaxy S22 Ultra", 999.99000000000001, 10 },
-                    { 2, 1, 0, "https://images.samsung.com/vn/smartphones/galaxy-s22-ultra/images/galaxy-s22-ultra_jump_models_s.png", "Galaxy S22 Ultra", 999.99000000000001, 30 },
-                    { 3, 1, 0, "https://images.samsung.com/vn/smartphones/galaxy-s22-ultra/images/galaxy-s22-ultra_jump_models_s.png", "Galaxy S22 Ultra", 999.99000000000001, 20 },
-                    { 7, 1, 0, "https://images.samsung.com/vn/smartphones/galaxy-s22-ultra/images/galaxy-s22-ultra_jump_models_s.png", "Galaxy S22 Ultra", 999.99000000000001, 10 },
-                    { 8, 1, 0, "https://images.samsung.com/vn/smartphones/galaxy-s22-ultra/images/galaxy-s22-ultra_jump_models_s.png", "Galaxy S22 Ultra", 999.99000000000001, 30 },
-                    { 9, 1, 0, "https://images.samsung.com/vn/smartphones/galaxy-s22-ultra/images/galaxy-s22-ultra_jump_models_s.png", "Galaxy S22 Ultra", 999.99000000000001, 20 },
-                    { 4, 2, 4, "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png", "iPhone 13 Pro Max", 1299.99, 50 },
-                    { 5, 2, 4, "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png", "iPhone 13 Pro Max", 1299.99, 40 },
-                    { 6, 2, 4, "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png", "iPhone 13 Pro Max", 1299.99, 20 },
-                    { 10, 2, 4, "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png", "iPhone 13 Pro Max", 1299.99, 50 },
-                    { 11, 2, 4, "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png", "iPhone 13 Pro Max", 1299.99, 40 },
-                    { 12, 2, 4, "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2021/09/15/image-removebg-preview-15.png", "iPhone 13 Pro Max", 1299.99, 20 }
-                });
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[] { "3", "3" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -339,19 +341,29 @@ namespace demoweb.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Brand_CountryId",
-                table: "Brand",
-                column: "CountryId");
+                name: "IX_Book_CategoryId",
+                table: "Book",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Mobile_BrandId",
-                table: "Mobile",
-                column: "BrandId");
+                name: "IX_Book_authorId",
+                table: "Book",
+                column: "authorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_MobileId",
+                name: "IX_CategoryAuthor_AuthorId",
+                table: "CategoryAuthor",
+                column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CategoryAuthor_CategoryId",
+                table: "CategoryAuthor",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Order_BookId",
                 table: "Order",
-                column: "MobileId");
+                column: "BookId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -372,6 +384,9 @@ namespace demoweb.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "CategoryAuthor");
+
+            migrationBuilder.DropTable(
                 name: "Order");
 
             migrationBuilder.DropTable(
@@ -381,13 +396,13 @@ namespace demoweb.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Mobile");
+                name: "Book");
 
             migrationBuilder.DropTable(
-                name: "Brand");
+                name: "Category");
 
             migrationBuilder.DropTable(
-                name: "Country");
+                name: "Author");
         }
     }
 }
