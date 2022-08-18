@@ -39,15 +39,15 @@ namespace demoweb.Data
         private void SeedAuthor(ModelBuilder builder)
         {
             builder.Entity<Author>().HasData(
-                new Author { Id = 1, Name = "Nguyễn Nhật Ánh"},
-                new Author { Id = 2, Name = "Vũ Trọng Phụng"}
+                new Author { Id = 1, Name = "Nguyễn Nhật Ánh" },
+                new Author { Id = 2, Name = "Vũ Trọng Phụng" }
                 );
         }
         private void SeedCategory(ModelBuilder builder)
         {
             builder.Entity<Category>().HasData(
-                new Category {Id = 1, Name = "Truyện Ngắn",Description = "Truyện ngắn là một thể loại văn học. Nó thường là các câu chuyện kể bằng văn xuôi và có xu hướng ngắn gọn, súc tích và hàm nghĩa hơn các câu truyện dài như tiểu thuyết." },
-                new Category {Id = 2, Name = "Tiểu thuyết",Description = "Tiểu thuyết là một thể loại văn xuôi có hư cấu, thông qua nhân vật, hoàn cảnh, sự việc để phản ánh bức tranh xã hội rộng lớn và những vấn đề của cuộc sống con người, biểu hiện tính chất tường thuật, tính chất kể chuyện bằng ngôn ngữ văn xuôi theo những chủ đề xác định." }
+                new Category { Id = 1, Name = "Truyện Ngắn", Description = "Truyện ngắn là một thể loại văn học. Nó thường là các câu chuyện kể bằng văn xuôi và có xu hướng ngắn gọn, súc tích và hàm nghĩa hơn các câu truyện dài như tiểu thuyết." },
+                new Category { Id = 2, Name = "Tiểu thuyết", Description = "Tiểu thuyết là một thể loại văn xuôi có hư cấu, thông qua nhân vật, hoàn cảnh, sự việc để phản ánh bức tranh xã hội rộng lớn và những vấn đề của cuộc sống con người, biểu hiện tính chất tường thuật, tính chất kể chuyện bằng ngôn ngữ văn xuôi theo những chủ đề xác định." }
                 );
         }
 
@@ -149,7 +149,7 @@ namespace demoweb.Data
                 {
                     Id = 1,
                     Name = "Mắt Biếc",
-                    AuthorName= "Nguyễn Nhật Ánh",
+                    AuthorName = "Nguyễn Nhật Ánh",
                     Quantity = 12,
                     Price = 250.000,
                     Image = "https://ebookhay.net/wp-content/uploads/2021/02/mat-biec-pdf.jpg",
@@ -258,15 +258,16 @@ namespace demoweb.Data
             );
             //throw new NotImplementedException();
         }
+      
 
-        /*private void SeedBrand(ModelBuilder builder)
-        {
-            builder.Entity<Brand>().HasData(
-                new Brand { Id = 1, Name = "Samsung", CountryId = 1 },
-                new Brand { Id = 2, Name = "Apple", CountryId = 2 },
-                new Brand { Id = 3, Name = "Xiaomi", CountryId = 3 }
-             );
-            // throw new NotImplementedException();
-        }*/
-    }
+    /*private void SeedBrand(ModelBuilder builder)
+    {
+        builder.Entity<Brand>().HasData(
+            new Brand { Id = 1, Name = "Samsung", CountryId = 1 },
+            new Brand { Id = 2, Name = "Apple", CountryId = 2 },
+            new Brand { Id = 3, Name = "Xiaomi", CountryId = 3 }
+         );
+        // throw new NotImplementedException();
+    }*/
+}
 }
