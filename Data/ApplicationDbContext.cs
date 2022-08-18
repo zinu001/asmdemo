@@ -119,7 +119,7 @@ namespace demoweb.Data
                     Image = "",
                     Description = "",
                     CategoryId = 1,
-                },
+                }
                   
             );
             //throw new NotImplementedException();
