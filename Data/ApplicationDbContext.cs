@@ -29,10 +29,26 @@ namespace demoweb.Data
             /*SeedCountry(builder);
             SeedBrand(builder);*/
             SeedBook(builder);
+            SeedAuthor(builder);
             //add dữ liệu cho 3 bảng: User, Role, UserRole => Authentication (Login/Logout) + Authorization (Role Assign)
             SeedUser(builder);
             SeedRole(builder);
             SeedUserRole(builder);
+        }
+
+        private void SeedAuthor(ModelBuilder builder)
+        {
+            builder.Entity<Author>().HasData(
+                new Author { Id = 1, Name = "Nguyễn Nhật Ánh"},
+                new Author { Id = 2, Name = "Vũ Trọng Phụng"}
+                );
+        }
+        private void SeedCategory(ModelBuilder builder)
+        {
+            builder.Entity<Category>().HasData(
+                new Category {Id = 1, Name = "Truyện Ngắn",Description = "Truyện ngắn là một thể loại văn học. Nó thường là các câu chuyện kể bằng văn xuôi và có xu hướng ngắn gọn, súc tích và hàm nghĩa hơn các câu truyện dài như tiểu thuyết." },
+                new Category {Id = 2, Name = "Tiểu thuyết",Description = "Tiểu thuyết là một thể loại văn xuôi có hư cấu, thông qua nhân vật, hoàn cảnh, sự việc để phản ánh bức tranh xã hội rộng lớn và những vấn đề của cuộc sống con người, biểu hiện tính chất tường thuật, tính chất kể chuyện bằng ngôn ngữ văn xuôi theo những chủ đề xác định." }
+                );
         }
 
         /*private void SeedCountry(ModelBuilder builder)
