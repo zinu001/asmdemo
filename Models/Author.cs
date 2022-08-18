@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace asm2.Models
+namespace asmdemo.Models
 {
     //Author - Book: 1 to Many
     public class Author

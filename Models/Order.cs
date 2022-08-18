@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace asm2.Models
+namespace asmdemo.Models
 {
     public class Order
     {

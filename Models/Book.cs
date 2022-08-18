@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace asm2.Models
+namespace asmdemo.Models
 {
     //Book - Category : Many to One
     public class Book
