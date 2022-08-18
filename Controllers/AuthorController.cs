@@ -17,17 +17,14 @@ namespace asmdemo.Controllers
         }
 
         //load toàn bộ dữ liệu của bảng  
-        [Authorize(Roles = "Admin")]
-        public IActionResult Index()
-        {
-            return View(context.Author.ToList());
-        }
+        [Authorize(Roles = "Storeowner")]
+        public IActionResult Index() => View(context.Author.ToList());
 
         //xoá dữ liệu từ bảng
         public IActionResult Delete(int id)
         {
-            var brand = context.Author.Find(id);
-            context.Author.Remove(brand);
+            var author = context.Author.Find(id);
+            context.Author.Remove(author);
             context.SaveChanges();
             TempData["Message"] = "Delete Author successfully !";
             return RedirectToAction("Index");
@@ -36,8 +33,8 @@ namespace asmdemo.Controllers
         //xem thông tin theo id
         public IActionResult Detail(int id)
         {
-            var author = context.Author.Include(b => b.Books)  //Author - Book: 1 to Many
-                                       .Include(b => b.CategoryAuthors)  //Author - Category : M - M
+            var author = context.Author.Include(b => b.Books)  //1-M
+                                       .ThenInclude(b => b.Category)  //Author - Category : M - M
                                        .FirstOrDefault(b => b.Id == id);
             return View(author);
         }
@@ -48,7 +45,7 @@ namespace asmdemo.Controllers
         public IActionResult Create()
         {
             //đẩy danh sách của country sang bảng Add Brand
-            ViewBag.Categories = context.Category.ToList();
+            ViewBag.Category = context.Category.ToList();
             return View();
         }
 
