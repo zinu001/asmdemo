@@ -19,6 +19,6 @@ namespace asmdemo.Models
         public ICollection<Author> Authors { get; set; }
 
         public ICollection<CategoryAuthor> CategoryAuthors { get; set; }
-
+        public object Authors { get; internal set; }
     }
 }
