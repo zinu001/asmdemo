@@ -30,9 +30,9 @@ namespace demoweb.Data
             SeedBrand(builder);*/
             SeedBook(builder);
             //add dữ liệu cho 3 bảng: User, Role, UserRole => Authentication (Login/Logout) + Authorization (Role Assign)
-            /*SeedUser(builder);
+            SeedUser(builder);
             SeedRole(builder);
-            SeedUserRole(builder);*/
+            SeedUserRole(builder);
         }
 
         /*private void SeedCountry(ModelBuilder builder)
@@ -42,7 +42,7 @@ namespace demoweb.Data
                 new Country { Id = 2, Name = "USA" },
                 new Country { Id = 3, Name = "China" }
                 );
-        }
+        }*/
 
         private void SeedUserRole(ModelBuilder builder)
         {
@@ -56,6 +56,11 @@ namespace demoweb.Data
                 {
                     UserId = "2",
                     RoleId = "2"
+                },
+                new IdentityUserRole<string>
+                {
+                    UserId = "3",
+                    RoleId = "3"
                 }
             );
         }
@@ -74,6 +79,12 @@ namespace demoweb.Data
                     Id = "2",
                     Name = "Customer",
                     NormalizedName = "Customer"
+                },
+                new IdentityRole
+                {
+                    Id = "3",
+                    Name = "Storeowner",
+                    NormalizedName = "Storeowner"
                 }
             );
         }
@@ -95,6 +106,13 @@ namespace demoweb.Data
                 UserName = "customer@gmail.com",
                 NormalizedUserName = "customer@gmail.com"
             };
+            var storeowner = new IdentityUser
+            {
+                Id = "3",
+                Email = "storeowner@gmail.com",
+                UserName = "storeowner@gmail.com",
+                NormalizedUserName = "storeowner@gmail.com"
+            };
 
             //khai báo thư viện để mã hóa mật khẩu cho user
             var hasher = new PasswordHasher<IdentityUser>();
@@ -102,10 +120,11 @@ namespace demoweb.Data
             //set mật khẩu đã mã hóa cho từng user
             admin.PasswordHash = hasher.HashPassword(admin, "123456");
             customer.PasswordHash = hasher.HashPassword(customer, "123456");
+            storeowner.PasswordHash = hasher.HashPassword(storeowner, "123456");
 
             //add 2 tài khoản test vào bảng User
-            builder.Entity<IdentityUser>().HasData(admin, customer);
-        }*/
+            builder.Entity<IdentityUser>().HasData(admin, customer, storeowner);
+        }
 
         private void SeedBook(ModelBuilder builder)
         {
