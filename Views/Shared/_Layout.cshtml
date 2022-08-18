@@ -22,13 +22,10 @@
                     {
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Mobile" asp-action="Index">Mobile</a>
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Category" asp-action="Index">Category Item</a>
                             </li>
                             <li class="nav-item">
-                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Brand" asp-action="Index">Brand</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Order" asp-action="Index">Order</a>
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Order" asp-action="Index">Order List</a>
                             </li>
                         </ul>
                     }
@@ -39,7 +36,24 @@
                                 <a class="h3 text text-primary" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Mobile" asp-action="Store">Store</a>
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Book" asp-action="Store">Store Book</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Order" asp-action="Store">Order</a>
+                            </li>
+                        </ul>
+                    }
+                    else if (User.Identity.IsAuthenticated && User.IsInRole("Storeowner"))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Book" asp-action="Index">All list of Book</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Author" asp-action="Index">Author List</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Category" asp-action="Index">Category List</a>
                             </li>
                         </ul>
                     }
@@ -55,7 +69,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container text-center">
-            <span class="alert alert-primary">Online Book Store - Demo Web Project - 1670 - Summer 2022</span>
+            <span class="alert alert-primary">Online Book Store - Demo Web Project - Summer 2022</span>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

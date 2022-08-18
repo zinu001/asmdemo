@@ -8,5 +8,11 @@ namespace asmdemo.Controllers
         {
             return View();
         }
+
+        public IActionResult Store()
+        {
+            return View();
+        }
     }
+
 }
