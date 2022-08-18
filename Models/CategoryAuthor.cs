@@ -1,4 +1,4 @@
-﻿namespace asm2.Models
+﻿namespace asmdemo.Models
 {
     public class CategoryAuthor
     {

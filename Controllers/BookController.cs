@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace asm2.Controllers
+namespace asmdemo.Controllers
 {
     public class BookController : Controller
     {
