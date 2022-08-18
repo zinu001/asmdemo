@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace asm2.Models
@@ -12,6 +13,7 @@ namespace asm2.Models
         [MinLength(3, ErrorMessage = "Book name must be at least 3 characters")]
         [MaxLength(30)]
         public string Name { get; set; }
+
 
         [Required]
         [Range(1, 100)]
@@ -30,10 +32,16 @@ namespace asm2.Models
 
         [Required]
         [Display(Name = "Category name")]
-        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
 
 
         //Book - Order: 1 to Many
         public ICollection<Order> Orders { get; set; }
+
+        //Book - Author: Many to one
+        public Author author { get; set; }
+        [Required]
+        [Display(Name = "Author name")]
+        public string AuthorName { get; set; }
     }
 }

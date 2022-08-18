@@ -113,12 +113,13 @@ namespace demoweb.Data
                 new Book
                 {
                     Id = 1,
-                    Name = "Galaxy S22 Ultra",
+                    Name = "Mắt Biếc",
+                    AuthorName= "Nguyễn Nhật Ánh",
                     Quantity = 12,
-                    Price = 999.99,
-                    Image = "",
-                    Description = "",
-                    CategoryId = 1,
+                    Price = 250.000,
+                    Image = "https://upload.wikimedia.org/wikipedia/vi/9/92/Mat_Biec.gif",
+                    Description = "Mắt biếc là tiểu thuyết của nhà văn Nguyễn Nhật Ánh trong loạt truyện viết về tình yêu thanh thiếu niên của tác giả này cùng với Thằng quỷ nhỏ, Cô gái đến từ hôm qua,... Đây được xem là một trong những tác phẩm tiêu biểu của Nguyễn Nhật Ánh, từng được dịch giả Kato Sakae dịch để giới thiệu với độc giả Nhật Bản với tựa đề Tsuburana hitomi",
+                    CategoryName = "truyện ngắn"
                 }
                   
             );
