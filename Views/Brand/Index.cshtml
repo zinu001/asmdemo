@@ -1,0 +1,42 @@
+﻿@model ICollection<Brand>
+
+<div class="container col-md-6 text-center mt-3">
+@if (@TempData["Message"] != null) {
+  <p class="alert alert-danger">@TempData["Message"]</p>
+}
+<table class="table table-bordered">
+    <tr>
+        <th colspan="2" class="h3 bg-light text-success">Brand List</th>
+        <th class="col-md-4">
+            <a class="btn btn-primary" asp-controller="Brand" asp-action="Create">
+                Add
+            </a>
+        </th>
+    </tr>
+    <tr>
+        <th>Brand Id</th>
+        <th>Brand Name</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var brand in Model)
+    {
+        <tr>
+            <td>@brand.Id</td>
+            <td>
+                <a class="font-weight-bold" asp-controller="Brand" asp-action="Detail" asp-route-id="@brand.Id">
+                    @brand.Name
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-controller="Brand" asp-action="Edit" asp-route-id="@brand.Id">
+                    Edit
+                </a>
+                <a class="btn btn-danger" asp-controller="Brand" asp-action="Delete" asp-route-id="@brand.Id"
+               onclick="    return confirm('Are you sure to delete this brand ?');">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+</div>
