@@ -18,8 +18,6 @@ namespace demoweb.Data
         public DbSet<Book> Book { get; set; }
         public DbSet<Category> Category { get; set; }
 
-        public DbSet<CategoryAuthor> CategoryAuthor { get; set; }
-
         public DbSet<Order> Order { get; set; }
 
         //add dữ liệu ban đầu cho bảng
@@ -39,9 +37,10 @@ namespace demoweb.Data
         private void SeedAuthor(ModelBuilder builder)
         {
             builder.Entity<Author>().HasData(
-                new Author { Id = 1, Name = "Nguyễn Nhật Ánh" },
-                new Author { Id = 2, Name = "Vũ Trọng Phụng" },
-                new Author { Id = 3, Name = "Nam Cao"}
+                new Author { Id = 1, Name = "Nguyễn Nhật Ánh", CategoryId =1 },
+                new Author { Id = 2, Name = "Vũ Trọng Phụng", CategoryId = 2 },
+                new Author { Id = 3, Name = "Nam Cao", CategoryId = 2 }
+
                 );
         }
         private void SeedCategory(ModelBuilder builder)
@@ -221,7 +220,7 @@ namespace demoweb.Data
                     Price = 55.000,
                     Image = "http://nhasachminhthang.vn/UserFiles/files/l%C3%A3o%20h%E1%BA%A1c.png",
                     Description = "Lão Hạc là một truyện ngắn của nhà văn Nam Cao được viết năm 1943. Tác phẩm được đánh giá là một trong những truyện ngắn khá tiêu biểu của d",
-                    CategoryId = 1
+                    CategoryId = 2
                 },
                 new Book
                 {
@@ -232,7 +231,7 @@ namespace demoweb.Data
                     Price = 85.000,
                     Image = "http://nhasachminhthang.vn/UserFiles/files/ch%C3%AD%20ph%C3%A8o%20110K.png",
                     Description = "Chí Phèo - tập truyện ngắn tái hiện bức tranh chân thực nông thôn Việt Nam trước 1945, nghèo đói, xơ xác trên con đường phá sản, bần cùng, hết sức thê thảm, người nông dân bị đẩy vào con đường tha hóa, lưu manh hóa. Nam Cao không hề bôi nhọ người nông dân, trái lại nhà văn đi sâu vào nội tâm nhân vật để khẳng định nhân phẩm và bản chất lương thiện ngay cả khi bị vùi dập, cướp mất cà nhân hình, nhân tính của người nông dân, đồng thời kết án đanh thép cái xã hội tàn bạo đó trước 1945.",
-                    CategoryId = 1
+                    CategoryId = 2
                 },
                 new Book
                 {
@@ -243,7 +242,7 @@ namespace demoweb.Data
                     Price = 45.000,
                     Image = "https://nhasachminhthang.vn/UserFiles/files/tuy%E1%BB%83n%20t%E1%BA%ADp%20nam%20cao%20120k.png",
                     Description = "Trong mảng sáng tác về đề tài tiểu tư sản của Nam Cao, truyện ngắn \"Đời Thừa\" có một vị trí đặc biệt. \"Đời Thừa\" đã ghi lại chân thật hình ảnh buồn thảm của người tri thức tiểu tư sản nghèo, nhà văn Nam Cao đã phác hoạ rõ nét hình ảnh vừa bi vừa hài của lớp người này trở nên đầy ám ảnh.",
-                    CategoryId = 1
+                    CategoryId = 2
                 },
                 new Book
                 {
@@ -254,7 +253,7 @@ namespace demoweb.Data
                     Price = 115.000,
                     Image = "https://nhasachminhthang.vn/UserFiles/files/NAM%202019/S%C3%A1ch%20V%C4%83n%20h%E1%BB%8Dc/%C4%91%C3%B4i%20m%E1%BA%AFt%2070k.png",
                     Description = "Tập truyện ngắn \"Đôi mắt\" gồm 15 tác phẩm tiêu biểu trong giai đoạn sáng tác từ 1941 - 1950 của Nam Cao",
-                    CategoryId = 1
+                    CategoryId = 2
                 }
             );
             //throw new NotImplementedException();
