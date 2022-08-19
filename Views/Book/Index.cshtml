@@ -1,4 +1,4 @@
-﻿@model ICollection<Views_Book_Index>
+﻿@model ICollection<boo>
 
 <div class="container text-center mt-3">
     @if (@TempData["Message"] != null)
@@ -7,9 +7,9 @@
     }
     <table class="table table-bordered">
         <tr>
-            <th colspan="3" class="h3 bg-light text-success">Mobile List</th>
+            <th colspan="3" class="h3 bg-light text-success">Book List</th>
             <th class="col-md-4">
-                <a class="btn btn-primary" asp-controller="Mobile" asp-action="Create">
+                <a class="btn btn-primary" asp-controller="Book" asp-action="Create">
                     Add
                 </a>
             </th>
@@ -20,10 +20,10 @@
             <th>Author Name</th>
             <th>Action</th>
         </tr>
-        @foreach (var mobile in Model)
+        @foreach (var views_Book_Index in Model)
         {
             <tr>
-                <td>@mobile.Id</td>
+                <td>@views_Book_Index.Id</td>
                 <td>
                     <a class="font-weight-bold" asp-controller="Mobile" asp-action="Detail" asp-route-id="@mobile.Id">
                         <img src="@mobile.Image" width="100" height="100">

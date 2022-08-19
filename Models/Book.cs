@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -32,16 +33,15 @@ namespace asmdemo.Models
 
         [Required]
         [Display(Name = "Category name")]
-        public string CategoryName { get; set; }
 
 
         //Book - Order: 1 to Many
         public ICollection<Order> Orders { get; set; }
 
         //Book - Author: Many to one
-        public Author author { get; set; }
+        public Author Author { get; set; }
+
         [Required]
         [Display(Name = "Author name")]
-        public string AuthorName { get; set; }
     }
 }

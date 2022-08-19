@@ -1,4 +1,5 @@
 ﻿using demoweb.Data;
+using demoweb.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -42,7 +43,7 @@ namespace asmdemo.Controllers
         public IActionResult Detail(int id)
         {
             var book = context.Book.Include(b => b.Category)  //Book - Category : Many to One
-                                       .Include(b => b.author)  //Book - Author: Many to one
+                                       .ThenInclude(b => b.au)  //Book - Author: Many to one
                                        .FirstOrDefault(b => b.Id == id);
             return View(book);
         }

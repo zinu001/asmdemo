@@ -17,6 +17,5 @@ namespace asmdemo.Models
         public ICollection<Book> Books { get; set; }
 
 
-        public ICollection<CategoryAuthor> CategoryAuthors { get; set; }
     }
 }
