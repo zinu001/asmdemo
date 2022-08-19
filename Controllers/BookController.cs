@@ -48,6 +48,15 @@ namespace asmdemo.Controllers
             return View(book);
         }
         [Authorize(Roles = "Storeowner")]
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            //đẩy danh sách của country sang bảng Add Mobile
+            ViewBag.Brands = context.Author.ToList();
+            return View();
+        }
+        
         [HttpPost]
         public IActionResult Create(Book book)
         {
@@ -65,6 +74,14 @@ namespace asmdemo.Controllers
 
             return View(book);
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            ViewBag.Brands = context.Author.ToList();
+            return View(context.Book.Find(id));
+        }
+
 
         [HttpPost]
         public IActionResult Edit(Book book)
