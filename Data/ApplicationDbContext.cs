@@ -17,9 +17,6 @@ namespace demoweb.Data
         public DbSet<Author> Author { get; set; }
         public DbSet<Book> Book { get; set; }
         public DbSet<Category> Category { get; set; }
-
-        public DbSet<CategoryAuthor> CategoryAuthor { get; set; }
-
         public DbSet<Order> Order { get; set; }
 
         //add dữ liệu ban đầu cho bảng
