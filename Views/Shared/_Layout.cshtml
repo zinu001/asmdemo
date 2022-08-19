@@ -22,11 +22,11 @@
                     {
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Category" asp-action="Index">Category Item</a>
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Category" asp-action="Detail">Category Item</a>
                             </li>
-                            <li class="nav-item">
+                            @*<li class="nav-item">
                                 <a class="h3 text text-success ml-3" asp-area="" asp-controller="Order" asp-action="Index">Order List</a>
-                            </li>
+                            </li>*@
                         </ul>
                     }
                     else if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
@@ -38,9 +38,9 @@
                             <li class="nav-item">
                                 <a class="h3 text text-success ml-3" asp-area="" asp-controller="Book" asp-action="Store">Store Book</a>
                             </li>
-                            <li class="nav-item">
+                            @*<li class="nav-item">
                                 <a class="h3 text text-success ml-3" asp-area="" asp-controller="Order" asp-action="Store">Order</a>
-                            </li>
+                            </li>*@
                         </ul>
                     }
                     else if (User.Identity.IsAuthenticated && User.IsInRole("Storeowner"))
@@ -53,7 +53,7 @@
                                 <a class="h3 text text-success ml-3" asp-area="" asp-controller="Author" asp-action="Index">Author List</a>
                             </li>
                             <li class="nav-item">
-                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Category" asp-action="Index">Category List</a>
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Category" asp-action="Detail">Category List</a>
                             </li>
                         </ul>
                     }
