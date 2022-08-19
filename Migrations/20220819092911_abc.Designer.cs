@@ -10,7 +10,7 @@ using demoweb.Data;
 namespace asmdemo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220819092632_abc")]
+    [Migration("20220819092911_abc")]
     partial class abc
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,21 +51,21 @@ namespace asmdemo.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "782bd419-5fe9-48f5-85f5-b721b12353a9",
+                            ConcurrencyStamp = "012ba66c-39a2-4acb-abcb-1f06c1d2bbbe",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "21564746-f787-408f-a4d6-e802bd79ca1a",
+                            ConcurrencyStamp = "534b0be4-19df-4406-bb34-6571bb9b90d4",
                             Name = "Customer",
                             NormalizedName = "Customer"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "87921445-deba-4b58-bee1-637b6a0b7f6f",
+                            ConcurrencyStamp = "294b0ade-04f9-4f27-8f8d-dc53e16de730",
                             Name = "Storeowner",
                             NormalizedName = "Storeowner"
                         });
@@ -164,14 +164,14 @@ namespace asmdemo.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "12b99d9d-a3d5-4a35-8aad-78a8a7416b2e",
+                            ConcurrencyStamp = "3facd90f-5f3e-415b-9ef0-0c5ce79f0228",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAED0IUHTXDVNqQm9PArigt3JwDg1JByxjqdcjLtQzGfZFvZ9aKE1VUjsZ9Fy0HbQQbg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBvL2JDyxpOZLx4hXcMPqFXNUYZKXp3bsMaKXEIhpCmWQxKyRcKvHd9oFJ5Nwgehgw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "04ce3c15-b6bc-4e0d-93cc-abb419bd437e",
+                            SecurityStamp = "6366b909-d5ab-4d0d-a6d8-01dc633ce4ba",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -179,14 +179,14 @@ namespace asmdemo.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a5ef64c9-4318-4cdf-bbc1-d57d24c8ce0a",
+                            ConcurrencyStamp = "5f10ed28-903c-48f4-9451-487df249adc0",
                             Email = "customer@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "customer@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPo0PGZTYIar/jS5QlYmxZMHCOW60EqZPcyQI+xXOfQbAgWHvUwFLksAQFffmYPaSA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECSjC0XD4ZdAHbTY4L23Hdzf7IIY58A/O/O1/MgCf4arI3CbSfhT+9eYJ0D6hXmZSg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "830fd02f-e3cd-4e5f-b422-6c2cd920be66",
+                            SecurityStamp = "07f87ec7-3100-4f1d-9e42-e2b57428afe1",
                             TwoFactorEnabled = false,
                             UserName = "customer@gmail.com"
                         },
@@ -194,14 +194,14 @@ namespace asmdemo.Migrations
                         {
                             Id = "3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "99143a97-3bbc-45a9-8ede-fb084d3f9ab9",
+                            ConcurrencyStamp = "ef0f606e-1954-4f3b-aa30-720fd6634d55",
                             Email = "storeowner@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "storeowner@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG7g+VerrdlHJe4ft+UO6TIH0KAist9z7RPOjPG8iJZRMG2T60mq9qULMAlxoHDWng==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFUIGAE+w4VQYxsZrykuoWKBBBQmKpA2RAR1EauJ92J0RLGA846270aT4RQujBvO0g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ffcb5919-66eb-438a-802e-5a4908433d60",
+                            SecurityStamp = "a2a2737c-b56c-4972-95b7-bea5f8ea39ea",
                             TwoFactorEnabled = false,
                             UserName = "storeowner@gmail.com"
                         });
