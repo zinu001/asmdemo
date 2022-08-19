@@ -34,7 +34,7 @@ namespace asmdemo.Controllers
         public IActionResult Detail(int id)
         {
             var author = context.Author.Include(b => b.Books)  //1-M
-                                       .ThenInclude(b => b.Category)  //Author - Category : M - 1
+                                       .ThenInclude(b => b.Category)  //Author - Category : M - M
                                        .FirstOrDefault(b => b.Id == id);
             return View(author);
         }
