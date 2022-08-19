@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace asmdemo.Models
 {
     //Author - Book: 1 to Many
+    //Author - Category: Many to 1
     public class Author
     {
         public int Id { get; set; }
@@ -13,6 +14,8 @@ namespace asmdemo.Models
         public string Name { get; set; }
 
         public ICollection<Book> Books { get; set; }
+
+
 
 
 

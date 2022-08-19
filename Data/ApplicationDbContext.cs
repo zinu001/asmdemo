@@ -18,7 +18,6 @@ namespace demoweb.Data
         public DbSet<Book> Book { get; set; }
         public DbSet<Category> Category { get; set; }
 
-        public DbSet<CategoryAuthor> CategoryAuthor { get; set; }
 
         public DbSet<Order> Order { get; set; }
 
@@ -40,7 +39,8 @@ namespace demoweb.Data
         {
             builder.Entity<Author>().HasData(
                 new Author { Id = 1, Name = "Nguyễn Nhật Ánh" },
-                new Author { Id = 2, Name = "Vũ Trọng Phụng" }
+                new Author { Id = 2, Name = "Vũ Trọng Phụng" },
+                new Author { Id = 3, Name = "Nam Cao"}
                 );
         }
         private void SeedCategory(ModelBuilder builder)
