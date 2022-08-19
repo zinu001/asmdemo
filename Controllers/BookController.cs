@@ -1,5 +1,5 @@
-﻿using demoweb.Data;
-using demoweb.Models;
+﻿using asmdemo.Models;
+using demoweb.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -49,7 +49,7 @@ namespace asmdemo.Controllers
         }
         [Authorize(Roles = "Storeowner")]
         [HttpPost]
-        public IActionResult Create(BookController book)
+        public IActionResult Create(Book book)
         {
             //check tính hợp lệ của dữ liệu 
             if (ModelState.IsValid)
@@ -67,7 +67,7 @@ namespace asmdemo.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(BookController book)
+        public IActionResult Edit(Book book)
         {
             //check tính hợp lệ của dữ liệu 
             if (ModelState.IsValid)

@@ -16,7 +16,7 @@ namespace asmdemo.Controllers
         public IActionResult Detail(int id)
         {
             var country = context.Category.Include(c => c.Books)      //1-M
-                                         .ThenInclude(b => b.Category) //category => author 
+                                         .ThenInclude(c => c.Category) //category => author 
                                          .FirstOrDefaultAsync(c => c.Id == id);
             /* Note:
              * Nếu 2 bảng có kết nối trực tiếp (đi thẳng) thì dùng hàm Include
