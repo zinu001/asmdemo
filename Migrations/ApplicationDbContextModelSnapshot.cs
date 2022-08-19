@@ -49,21 +49,21 @@ namespace asmdemo.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "332b7b87-8500-4d15-af3a-e1a2935524f0",
+                            ConcurrencyStamp = "703f7a57-0e72-45dd-a24b-2a55b87579fa",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "e5888ce4-9fa4-4837-a7bb-5c95d276792f",
+                            ConcurrencyStamp = "ad67f7b3-2005-4556-bf01-0f5dd7ae7e6f",
                             Name = "Customer",
                             NormalizedName = "Customer"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "eb5072ab-59ad-400f-b5d4-91da316ba835",
+                            ConcurrencyStamp = "51aac660-3642-4dfb-98be-4518d67edbc3",
                             Name = "Storeowner",
                             NormalizedName = "Storeowner"
                         });
@@ -162,14 +162,14 @@ namespace asmdemo.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7740b6f2-a763-4af6-9bbd-7f91f8fd52a1",
+                            ConcurrencyStamp = "952ab49d-d4aa-4cfa-9387-30c469ab0fbe",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIzWxezKanLyUej1w1NICsbjH4+rA0yZZX06j6CCxv9XRhb5hASS0XcteCC2UHu4tg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJn2DK5ARnja/X249xKtlto5Wo7pclWTZjSv6Z1OOpa9Wjet/ujtLhBQJJuhF3xp5A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "829f280a-5a50-499d-bb06-4e07f8f9effd",
+                            SecurityStamp = "2a9ab810-ae4f-4c9e-afa6-f124efdbc24d",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -177,14 +177,14 @@ namespace asmdemo.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d4704a50-bf2c-4004-a927-108f528cbb9e",
+                            ConcurrencyStamp = "eeb5e0eb-ed1f-464b-8c95-e1ad93fe310e",
                             Email = "customer@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "customer@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPUY3yCGUslhekWZTeGjIOG2BRMJFh6qBxIQQpDDf8KWsoOY1gxa7IJB3FlW6nwMrQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEKJfGdMyZ5gRD46h6PNZj/dPbkTTB0fMj3MWKYlvtV/sCOkED2Skrk0M+eAcFzk/Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9c528caf-d0ad-4bc3-94da-5a554c1c85e0",
+                            SecurityStamp = "2eb23eb8-4955-450d-987e-ec26a1305ff9",
                             TwoFactorEnabled = false,
                             UserName = "customer@gmail.com"
                         },
@@ -192,14 +192,14 @@ namespace asmdemo.Migrations
                         {
                             Id = "3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bc18482e-8a0c-4fc7-80fc-4ce4fab1ce46",
+                            ConcurrencyStamp = "f295f478-6b99-4633-8805-69212b3cd43f",
                             Email = "storeowner@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "storeowner@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBky15CH3o3P57M2JB2yRehDYAxY1VTNND3kJ8aCb4D4xOzhvJIqgP0s+mVZRKBvKA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELugzKriTQ0s31AR9QdLSfhKWMJ3GQtfqKu1JWsGw8mzokxMrmsLlyTBJ5x8Bpwe6Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9140b432-7a89-4d5d-8159-d50ec8a1ffaf",
+                            SecurityStamp = "c34ecd24-d960-4515-936e-6b2b3655e1d0",
                             TwoFactorEnabled = false,
                             UserName = "storeowner@gmail.com"
                         });
@@ -313,6 +313,9 @@ namespace asmdemo.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)")
@@ -320,18 +323,28 @@ namespace asmdemo.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Author");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            CategoryId = 1,
                             Name = "Nguyễn Nhật Ánh"
                         },
                         new
                         {
                             Id = 2,
+                            CategoryId = 2,
                             Name = "Vũ Trọng Phụng"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 2,
+                            Name = "Nam Cao"
                         });
                 });
 
@@ -342,16 +355,11 @@ namespace asmdemo.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AuthorName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -372,14 +380,11 @@ namespace asmdemo.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("authorId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("AuthorId");
 
-                    b.HasIndex("authorId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Book");
 
@@ -387,8 +392,8 @@ namespace asmdemo.Migrations
                         new
                         {
                             Id = 1,
-                            AuthorName = "Nguyễn Nhật Ánh",
-                            CategoryName = "truyện ngắn",
+                            AuthorId = 1,
+                            CategoryId = 1,
                             Description = "Mắt biếc là tiểu thuyết của nhà văn Nguyễn Nhật Ánh trong loạt truyện viết về tình yêu thanh thiếu niên của tác giả này cùng với Thằng quỷ nhỏ, Cô gái đến từ hôm qua,... Đây được xem là một trong những tác phẩm tiêu biểu của Nguyễn Nhật Ánh, từng được dịch giả Kato Sakae dịch để giới thiệu với độc giả Nhật Bản với tựa đề Tsuburana hitomi",
                             Image = "https://ebookhay.net/wp-content/uploads/2021/02/mat-biec-pdf.jpg",
                             Name = "Mắt Biếc",
@@ -398,8 +403,8 @@ namespace asmdemo.Migrations
                         new
                         {
                             Id = 2,
-                            AuthorName = "Nguyễn Nhật Ánh",
-                            CategoryName = "truyện ngắn",
+                            AuthorId = 1,
+                            CategoryId = 1,
                             Description = "Tôi thấy hoa vàng trên cỏ xanh là một tiểu thuyết dành cho thanh thiếu niên của nhà văn Nguyễn Nhật Ánh, xuất bản lần đầu tại Việt Nam vào ngày 9 tháng 12 năm 2010 bởi Nhà xuất bản Trẻ với phần tranh minh họa do Đỗ Hoàng Tường thực hiện",
                             Image = "https://newshop.vn/public/uploads/content/toi-thay-hoa-vang-tren-co-xanh.png",
                             Name = "Tôi thấy hoa vàng trên cỏ xanh",
@@ -409,8 +414,8 @@ namespace asmdemo.Migrations
                         new
                         {
                             Id = 3,
-                            AuthorName = "Nguyễn Nhật Ánh",
-                            CategoryName = "truyện ngắn",
+                            AuthorId = 1,
+                            CategoryId = 1,
                             Description = "Kính vạn hoa là một bộ truyện dài nhiều tập của nhà văn Nguyễn Nhật Ánh. Bộ truyện gồm 54 tập truyện mang tính hài hước kể về những chuyện vui buồn trong giới ",
                             Image = "https://www.khaitam.com/Data/Sites/1/Product/19297/kinh---van---hoa---tap-5.png",
                             Name = "Kính vạn hoa",
@@ -420,8 +425,8 @@ namespace asmdemo.Migrations
                         new
                         {
                             Id = 4,
-                            AuthorName = "Vũ Trọng Phụng",
-                            CategoryName = "tiểu thuyết ",
+                            AuthorId = 2,
+                            CategoryId = 2,
                             Description = "Số đỏ là một tiểu thuyết văn học của nhà văn Vũ Trọng Phụng, đăng ở Hà Nội báo từ số 40 ngày 7 tháng 10 1936 và được in thành sách lần đầu vào năm 1938",
                             Image = "https://lh6.googleusercontent.com/-VrA8w0cexZ8/VOx9bPe0C5I/AAAAAAAAUVA/gnCyKbigjYA/w360-h472-no/39016.png",
                             Name = "Số đỏ",
@@ -431,8 +436,8 @@ namespace asmdemo.Migrations
                         new
                         {
                             Id = 5,
-                            AuthorName = "Vũ Trọng Phụng",
-                            CategoryName = "tiểu thuyết ",
+                            AuthorId = 2,
+                            CategoryId = 2,
                             Description = "Trúng Số Độc Đắc là tác phẩm cuối đời của Vũ Trọng Phụng. Khác với lối viết tiểu thuyết trước, cứ đến ngày báo ra mới viết một chương, đưa in xong hết mới mới thành sách, Trúng Số Độc Đắc được Vũ Trọng Phụng viết một mạch đến khi hoàn thành, tự tay đi đóng thành quyển rồi mới đưa cho nhà xuất bản",
                             Image = "https://vnwriter.net/wp-content/uploads/2019/03/sach-trung-so-doc-dac.png",
                             Name = "Trúng số độc đắc",
@@ -442,8 +447,8 @@ namespace asmdemo.Migrations
                         new
                         {
                             Id = 6,
-                            AuthorName = "Vũ Trọng Phụng",
-                            CategoryName = "tiểu thuyết",
+                            AuthorId = 2,
+                            CategoryId = 2,
                             Description = "Tiểu thuyết Giông tố dài 30 chương và thêm một đoạn kết: nhưng sự việc xảy ra trong một thời gian cũng ngắn vậy. Như lời Vũ Trọng Phụng ghi vào lòng truyện, sự việc mở ra vào tháng 10-1932 và kết thúc vào mùa hè 1933.",
                             Image = "https://sachhaynendoc.net/wp-content/uploads/2020/04/%E1%BA%A2nh-b%C3%ACa-cu%E1%BB%91n-ti%E1%BB%83u-tuy%E1%BA%BFt-Gi%C3%B4ng-t%E1%BB%91.png",
                             Name = "Giông tố",
@@ -453,8 +458,8 @@ namespace asmdemo.Migrations
                         new
                         {
                             Id = 7,
-                            AuthorName = "Nam Cao",
-                            CategoryName = "truyện ngắn",
+                            AuthorId = 3,
+                            CategoryId = 2,
                             Description = "Lão Hạc là một truyện ngắn của nhà văn Nam Cao được viết năm 1943. Tác phẩm được đánh giá là một trong những truyện ngắn khá tiêu biểu của d",
                             Image = "http://nhasachminhthang.vn/UserFiles/files/l%C3%A3o%20h%E1%BA%A1c.png",
                             Name = "Lão Hạc",
@@ -464,8 +469,8 @@ namespace asmdemo.Migrations
                         new
                         {
                             Id = 8,
-                            AuthorName = "Nam Cao",
-                            CategoryName = "truyện ngắn",
+                            AuthorId = 3,
+                            CategoryId = 2,
                             Description = "Chí Phèo - tập truyện ngắn tái hiện bức tranh chân thực nông thôn Việt Nam trước 1945, nghèo đói, xơ xác trên con đường phá sản, bần cùng, hết sức thê thảm, người nông dân bị đẩy vào con đường tha hóa, lưu manh hóa. Nam Cao không hề bôi nhọ người nông dân, trái lại nhà văn đi sâu vào nội tâm nhân vật để khẳng định nhân phẩm và bản chất lương thiện ngay cả khi bị vùi dập, cướp mất cà nhân hình, nhân tính của người nông dân, đồng thời kết án đanh thép cái xã hội tàn bạo đó trước 1945.",
                             Image = "http://nhasachminhthang.vn/UserFiles/files/ch%C3%AD%20ph%C3%A8o%20110K.png",
                             Name = "Chí Phèo",
@@ -475,8 +480,8 @@ namespace asmdemo.Migrations
                         new
                         {
                             Id = 9,
-                            AuthorName = "Nam Cao",
-                            CategoryName = "truyện ngắn",
+                            AuthorId = 3,
+                            CategoryId = 2,
                             Description = "Trong mảng sáng tác về đề tài tiểu tư sản của Nam Cao, truyện ngắn \"Đời Thừa\" có một vị trí đặc biệt. \"Đời Thừa\" đã ghi lại chân thật hình ảnh buồn thảm của người tri thức tiểu tư sản nghèo, nhà văn Nam Cao đã phác hoạ rõ nét hình ảnh vừa bi vừa hài của lớp người này trở nên đầy ám ảnh.",
                             Image = "https://nhasachminhthang.vn/UserFiles/files/tuy%E1%BB%83n%20t%E1%BA%ADp%20nam%20cao%20120k.png",
                             Name = "Đời thừa",
@@ -486,8 +491,8 @@ namespace asmdemo.Migrations
                         new
                         {
                             Id = 10,
-                            AuthorName = "Nam Cao",
-                            CategoryName = "truyện ngắn",
+                            AuthorId = 3,
+                            CategoryId = 2,
                             Description = "Tập truyện ngắn \"Đôi mắt\" gồm 15 tác phẩm tiêu biểu trong giai đoạn sáng tác từ 1941 - 1950 của Nam Cao",
                             Image = "https://nhasachminhthang.vn/UserFiles/files/NAM%202019/S%C3%A1ch%20V%C4%83n%20h%E1%BB%8Dc/%C4%91%C3%B4i%20m%E1%BA%AFt%2070k.png",
                             Name = "Đôi mắt",
@@ -513,28 +518,6 @@ namespace asmdemo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Category");
-                });
-
-            modelBuilder.Entity("asmdemo.Models.CategoryAuthor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("CategoryAuthor");
                 });
 
             modelBuilder.Entity("asmdemo.Models.Order", b =>
@@ -617,27 +600,25 @@ namespace asmdemo.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("asmdemo.Models.Book", b =>
+            modelBuilder.Entity("asmdemo.Models.Author", b =>
                 {
                     b.HasOne("asmdemo.Models.Category", "Category")
-                        .WithMany("Books")
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("asmdemo.Models.Author", "author")
-                        .WithMany("Books")
-                        .HasForeignKey("authorId");
+                        .WithMany("Authors")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("asmdemo.Models.CategoryAuthor", b =>
+            modelBuilder.Entity("asmdemo.Models.Book", b =>
                 {
                     b.HasOne("asmdemo.Models.Author", "Author")
-                        .WithMany("CategoryAuthors")
+                        .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("asmdemo.Models.Category", "Category")
-                        .WithMany("CategoryAuthors")
+                        .WithMany("Books")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -43,7 +43,7 @@ namespace asmdemo.Controllers
         public IActionResult Detail(int id)
         {
             var book = context.Book.Include(b => b.Category)  //Book - Category : Many to One
-                                       .ThenInclude(b => b.au)  //Book - Author: Many to one
+                                       .ThenInclude(b => b.Authors)  //Book - Author: Many to one
                                        .FirstOrDefault(b => b.Id == id);
             return View(book);
         }
