@@ -33,6 +33,7 @@ namespace asmdemo.Models
 
         [Required]
         [Display(Name = "Category name")]
+        public int CategoryId { get; set; }
 
 
         //Book - Order: 1 to Many
@@ -43,5 +44,6 @@ namespace asmdemo.Models
 
         [Required]
         [Display(Name = "Author name")]
+        public int AuthorId { get; set; }
     }
 }
